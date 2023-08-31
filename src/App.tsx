@@ -18,20 +18,26 @@ import {
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LginPage";
 
+import CartPage from "./pages/CartPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-     <Home></Home>
+      <Home></Home>
     ),
   },
   {
     path: "/login",
-    element: <LoginPage/>,
+    element: <LoginPage />,
+  },
+  {
+    path: "/cart",
+    element: <CartPage />,
   },
   {
     path: "/signup",
-    element: <SignUpPage/>,
+    element: <SignUpPage />,
   },
 ]);
 
