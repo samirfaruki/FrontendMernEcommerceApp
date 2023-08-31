@@ -19,6 +19,8 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LginPage";
 
 import CartPage from "./pages/CartPage";
+import Checkout from "./pages/CheckOutPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUpPage />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
+  },
+  {
+    path: "/productdetails",
+    element: <ProductDetailsPage />,
   },
 ]);
 
