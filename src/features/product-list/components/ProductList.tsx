@@ -14,15 +14,17 @@ import {
   ChevronLeftIcon,
 } from "@heroicons/react/20/solid"
 import { Link } from "react-router-dom"
-import { selectAllProducts, fetchAllProductsAsync, fetchFilteredProductsAsync } from "../ProductListSlice"
-import { fetchAllFilterPrroducts } from "../ProductListApi"
+import {
+  selectAllProducts,
+  fetchAllProductsAsync,
+  fetchFilteredProductsAsync,
+} from "../ProductListSlice"
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { name: "Best Rating", sort: "rating", order: "desc", current: false },
+
+  { name: "Price: Low to High", sort: "price", order: "asc", current: false },
+  { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ]
 
 const filters = [
@@ -209,6 +211,11 @@ export default function Product() {
     dispatch(fetchFilteredProductsAsync(newFilter))
   }
   // const dispatch = useDispatch()
+  const handleSort = (e,  option) => {
+    const newFilter = { ...filter, _sort:option.sort, _order:option.order }
+    setFilter(newFilter)
+    dispatch(fetchFilteredProductsAsync(newFilter))
+  }
 
   useEffect(() => {
     dispatch(fetchAllProductsAsync())
@@ -362,7 +369,9 @@ export default function Product() {
                         {sortOptions.map((option) => (
                           <Menu.Item key={option.name}>
                             {({ active }) => (
-                              <a
+                              <p
+                              onClick={(e) => handleSort(e,option)}
+
                                 href={option.href}
                                 className={classNames(
                                   option.current
@@ -373,7 +382,7 @@ export default function Product() {
                                 )}
                               >
                                 {option.name}
-                              </a>
+                              </p>
                             )}
                           </Menu.Item>
                         ))}
