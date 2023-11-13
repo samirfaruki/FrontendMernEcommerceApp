@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { selectCount } from "../LoginSlice"
 
 export function Login() {
-  const count = useSelector(selectCount)
-  const dispatch = useDispatch()
+  // const count = useSelector(selectCount)
+  // const dispatch = useDispatch()
 
   return (
     <>

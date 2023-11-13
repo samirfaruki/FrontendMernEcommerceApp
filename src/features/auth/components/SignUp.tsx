@@ -6,8 +6,8 @@ import { selectCount } from "../LoginSlice"
 import { Link } from "react-router-dom"
 
 export function SignUp() {
-  const count = useSelector(selectCount)
-  const dispatch = useDispatch()
+  // const count = useSelector(selectCount)
+  // const dispatch = useDispatch()
 
   return (
     <>

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { useSelector, useDispatch } from "react-redux"
 import { Fragment, useState, useEffect } from "react"
 import axios from "axios"
@@ -485,7 +486,7 @@ export default function Product() {
                 <div className="lg:col-span-3">
                   <div className="bg-white">
                     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                      <Link to={"/productdetails"}>
+                      <Link to={"/productdetails/:productId"}>
                         <div className="mt-n-6 grid grid-cols-1 gap-x-6 gap-y-10  sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                           {products.map((product) => (
                             <div
@@ -503,11 +504,15 @@ export default function Product() {
                                 <div>
                                   <h3 className="text-sm text-gray-700">
                                     <a href={product.thumbnail}>
+                                      
                                       <span
                                         aria-hidden="true"
                                         className="absolute inset-0"
                                       />
-                                      {product.title}
+                                     <Link to={`/productdetails/${product.id}`}>
+              <span aria-hidden="true" className="absolute inset-0" />
+              {product.title}
+            </Link>
                                     </a>
                                   </h3>
 
