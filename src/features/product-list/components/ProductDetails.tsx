@@ -1,11 +1,50 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchProductDetailsAsync, selectedProductById } from "../ProductListSlice";
-import { StarIcon } from "@heroicons/react/24/outline";
+// import { StarIcon } from "@heroicons/react/24/outline";
+import { StarIcon } from "@heroicons/react/20/solid"
+import { RadioGroup } from "@headlessui/react"
+// import { Link } from "react-router-dom"
+
+const product2 = {
+  
+  colors: [
+    { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+    { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
+    { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
+  ],
+  sizes: [
+    { name: "XXS", inStock: false },
+    { name: "XS", inStock: true },
+    { name: "S", inStock: true },
+    { name: "M", inStock: true },
+    { name: "L", inStock: true },
+    { name: "XL", inStock: true },
+    { name: "2XL", inStock: true },
+    { name: "3XL", inStock: true },
+  ],
+  description:
+    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+  highlights: [
+    "Hand cut and sewn locally",
+    "Dyed with our proprietary colors",
+    "Pre-washed & pre-shrunk",
+    "Ultra-soft 100% cotton",
+  ],
+  details:
+    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+}
+const reviews = { href: "#", average: 4, totalCount: 117 }
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ")
+}
 
 export default function ProductDetail () {
+  const [selectedColor, setSelectedColor] = useState(product2.colors[0])
+  const [selectedSize, setSelectedSize] = useState(product2.sizes[2])
   const dispatch = useDispatch();
   const params = useParams();
   const product = useSelector(selectedProductById);
@@ -63,7 +102,7 @@ export default function ProductDetail () {
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                {product.name}
+                {product.title}
               </a>
             </li>
           </ol>
@@ -102,23 +141,23 @@ export default function ProductDetail () {
             />
           </div>
         </div> 
-  {/*
-        Product info 
+  
+        {/* Product info  */}
         <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-              {product.name}
+              {product.title}
             </h1>
           </div>
 
-          Options 
+          {/* Options  */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
             <p className="text-3xl tracking-tight text-gray-900">
               {product.price}
             </p>
 
-            Reviews
+            {/* Reviews */}
             <div className="mt-6">
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
@@ -160,7 +199,7 @@ export default function ProductDetail () {
                     Choose a color
                   </RadioGroup.Label>
                   <div className="flex items-center space-x-3">
-                    {product.colors.map((color) => (
+                    {product2.colors.map((color) => (
                       <RadioGroup.Option
                         key={color.name}
                         value={color}
@@ -210,7 +249,7 @@ export default function ProductDetail () {
                     Choose a size
                   </RadioGroup.Label>
                   <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                    {product.sizes.map((size) => (
+                    {product2.sizes.map((size) => (
                       <RadioGroup.Option
                         key={size.name}
                         value={size}
@@ -295,7 +334,7 @@ export default function ProductDetail () {
 
               <div className="mt-4">
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  {product.highlights.map((highlight) => (
+                  {product2.highlights.map((highlight) => (
                     <li key={highlight} className="text-gray-400">
                       <span className="text-gray-600">{highlight}</span>
                     </li>
@@ -308,11 +347,11 @@ export default function ProductDetail () {
               <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
               <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">{product.details}</p>
+                <p className="text-sm text-gray-600">{product2.details}</p>
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
       </div>
     </div>
   )
